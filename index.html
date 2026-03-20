@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÚNICA - Landing Pages</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#faf9ff;color:#001a43;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.container{max-width:800px;padding:40px;text-align:center}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.5rem;margin-bottom:8px}
+p{color:#44464f;margin-bottom:40px;font-size:1.1rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.card{background:#fff;border-radius:16px;padding:32px 24px;text-decoration:none;color:#001a43;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,26,67,.08)}
+.card h2{font-size:1.25rem;margin-bottom:8px}
+.card span{color:#44464f;font-size:.9rem}
+.badge{display:inline-block;margin-top:16px;background:linear-gradient(135deg,#001943,#192f59);color:#fff;padding:8px 20px;border-radius:8px;font-size:.85rem}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<img src="https://unica.edu.co/wp-content/uploads/2020/03/Recurso-1.png" alt="ÚNICA" style="height:60px;margin-bottom:24px">
+<h1>Landing Pages</h1>
+<p>Selecciona una versión para visualizar</p>
+<div class="cards">
+<a class="card" href="unica-redesign.html">
+<h2>Clásica</h2>
+<span>Formulario integrado en el hero con imagen de fondo</span>
+<div class="badge">Ver landing →</div>
+</a>
+<a class="card" href="unica-home-video.html">
+<h2>Video</h2>
+<span>Hero con video de fondo y formulario en sección aparte</span>
+<div class="badge">Ver landing →</div>
+</a>
+<a class="card" href="unica-home-banners.html">
+<h2>Banners</h2>
+<span>Carrusel de banners con estadísticas salariales</span>
+<div class="badge">Ver landing →</div>
+</a>
+</div>
+</div>
+</body>
+</html>
