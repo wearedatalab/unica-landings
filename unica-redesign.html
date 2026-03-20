@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÚNICA — Institución Universitaria Colombo Americana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ─── Design Tokens ─── */
+        :root {
+            --surface: #faf9ff;
+            --surface-container-low: #f1f3ff;
+            --surface-container-high: #e3e5f2;
+            --surface-container-highest: #d9e2ff;
+            --surface-container-lowest: #ffffff;
+            --primary: #001943;
+            --primary-container: #192f59;
+            --on-primary: #ffffff;
+            --secondary: #765b00;
+            --secondary-container: #fdc817;
+            --on-secondary-container: #6e5400;
+            --gold: #FFC919;
+            --tertiary-container: #00382a;
+            --on-tertiary-container: #00ad87;
+            --teal: #00ad87;
+            --on-surface: #001a43;
+            --on-surface-variant: #44474f;
+            --on-surface-muted: #6b7084;
+            --outline-variant: #c5c6d0;
+            --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+            --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+            --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--on-surface); background: var(--surface);
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-5); }
+        .grid { display: grid; gap: var(--sp-6); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+        /* ─── Hero Section ─── */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+            color: var(--on-primary);
+            padding: var(--sp-20) var(--sp-5);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--sp-5);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: var(--sp-8);
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-container);
+            color: var(--on-secondary-container);
+            padding: var(--sp-4) var(--sp-8);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary);
+            color: var(--on-primary);
+            transform: translateY(-2px);
+        }
+
+        /* ─── Card Styles ─── */
+        .card {
+            background: var(--surface-container-lowest);
+            border-radius: var(--radius-lg);
+            padding: var(--sp-6);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--sp-3);
+            color: var(--primary);
+        }
+
+        /* ─── Features Section ─── */
+        .features {
+            padding: var(--sp-20) var(--sp-5);
+            background: var(--surface);
+        }
+
+        .features h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: var(--sp-16);
+            color: var(--primary);
+        }
+
+        /* ─── Navigation ─── */
+        nav {
+            background: var(--surface-container-lowest);
+            padding: var(--sp-4) var(--sp-5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: var(--sp-6);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: var(--primary);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            background: var(--primary);
+            color: var(--on-primary);
+            padding: var(--sp-12) var(--sp-5);
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: var(--sp-3);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .features h2 { font-size: 1.75rem; }
+            nav ul { gap: var(--sp-4); }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="container">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#features">Características</a></li>
+            <li><a href="#about">Acerca de</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>ÚNICA — Institución Universitaria Colombo Americana</h1>
+            <p>Educación de excelencia para el futuro de Colombia</p>
+            <button class="cta-button">Conocer más</button>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Nuestras Características</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>Excelencia Académica</h3>
+                    <p>Programas educativos de calidad mundial, diseñados para preparar profesionales altamente capacitados.</p>
+                </div>
+                <div class="card">
+                    <h3>Campus Moderno</h3>
+                    <p>Instalaciones contemporáneas equipadas con tecnología de punta para el aprendizaje integral.</p>
+                </div>
+                <div class="card">
+                    <h3>Docentes Expertos</h3>
+                    <p>Cuerpo docente con experiencia internacional y comprometido con la formación integral.</p>
+                </div>
+                <div class="card">
+                    <h3>Responsabilidad Social</h3>
+                    <p>Programas de impacto social que transforman comunidades en Colombia y Latinoamérica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container" style="padding: var(--sp-20) var(--sp-5);">
+            <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.5rem; margin-bottom: var(--sp-8); color: var(--primary);">Acerca de ÚNICA</h2>
+            <p style="font-size: 1.1rem; margin-bottom: var(--sp-6); color: var(--on-surface-variant);">ÚNICA es una institución universitaria con más de 30 años de trayectoria en la educación superior colombiana. Nos hemos dedicado a formar profesionales competentes, éticos y comprometidos con el desarrollo sostenible.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h3>Contacto</h3>
+            <p>Dirección: Calle 123, Bogotá, Colombia</p>
+            <p>Teléfono: +57 (1) 1234-5678</p>
+            <p>Email: info@unica.edu.co</p>
+            <p style="margin-top: var(--sp-8); padding-top: var(--sp-6); border-top: 1px solid rgba(255,255,255,0.2);">&copy; 2024 ÚNICA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+  </html>
