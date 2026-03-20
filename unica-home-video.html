@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÚNICA — Video Institucional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #001943;
+            --primary-container: #192f59;
+            --on-primary: #ffffff;
+            --secondary: #765b00;
+            --secondary-container: #fdc817;
+            --surface: #faf9ff;
+            --surface-container-lowest: #ffffff;
+            --on-surface: #001a43;
+            --on-surface-variant: #44474f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--on-surface);
+            background: var(--surface);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--surface-container-lowest);
+            padding: 16px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Video Section */
+        .hero-video {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--primary);
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 25, 67, 0.4), rgba(0, 25, 67, 0.1));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .video-overlay h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .video-overlay p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 48px;
+            color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--surface-container-lowest);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-container));
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-container);
+            color: var(--on-surface);
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary);
+            color: var(--on-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(118, 91, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--on-primary);
+            padding: 48px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 12px;
+        }
+
+        footer .divider {
+            margin: 32px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .video-overlay h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.75rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul class="container">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#about">Acerca de</a></li>
+            <li><a href="#content">Contenido</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Video Section -->
+    <div class="hero-video" id="home">
+        <video autoplay muted loop playsinline>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <h1>ÚNICA en Acción</h1>
+            <p>Descubre la excelencia académica y la transformación que ofrecemos a nuestros estudiantes</p>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>Nuestra Misión</h2>
+            <div class="grid grid-2">
+                <div>
+                    <p style="font-size: 1.1rem; margin-bottom: 16px; color: var(--on-surface-variant);">
+                        En ÚNICA, nos comprometemos a ofrecer educación de excelencia que prepara a nuestros estudiantes para liderar en un mundo en constante cambio.
+                    </p>
+                    <p style="color: var(--on-surface-variant);">
+                        Nuestros programas académicos integran teoría y práctica, con énfasis en el pensamiento crítico, la innovación y la responsabilidad social.
+                    </p>
+                </div>
+                <div>
+                    <p style="font-size: 1.1rem; margin-bottom: 16px; color: var(--on-surface-variant);">
+                        Con más de 30 años de experiencia, hemos formado profesionales que contribuyen significativamente al desarrollo de Colombia y la región.
+                    </p>
+                    <p style="color: var(--on-surface-variant);">
+                        Somos una comunidad diversa, inclusiva y comprometida con la excelencia académica y el bienestar integral de nuestra población estudiantil.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section id="content" style="background: var(--surface);">
+        <div class="container">
+            <h2>Nuestras Fortalezas</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #001943, #192f59);"></div>
+                    <div class="card-content">
+                        <h3>Excelencia Académica</h3>
+                        <p>Programas diseñados por expertos con enfoque en competencias del siglo XXI y acreditación internacional.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #765b00, #fdc817);"></div>
+                    <div class="card-content">
+                        <h3>Innovación Continua</h3>
+                        <p>Laboratorios modernos, espacios colaborativos y acceso a tecnología de punta para el aprendizaje.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #00382a, #00ad87);"></div>
+                    <div class="card-content">
+                        <h3>Comunidad Global</h3>
+                        <p>Alianzas con universidades del mundo, movilidad estudiantil y oportunidades de intercambio académico.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #192f59, #001943);"></div>
+                    <div class="card-content">
+                        <h3>Desarrollo Integral</h3>
+                        <p>Programas de liderazgo, bienestar estudiantil y responsabilidad social que forman profesionales éticos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h3>Contáctanos</h3>
+            <p>¿Tienes preguntas? Nos encantaría saber de ti.</p>
+            <p><strong>Email:</strong> info@unica.edu.co</p>
+            <p><strong>Teléfono:</strong> +57 (1) 1234-5678</p>
+            <p><strong>Ubicación:</strong> Bogotá, Colombia</p>
+            <div class="divider"></div>
+            <p>&copy; 2024 ÚNICA. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos de Uso</a></p>
+        </div>
+    </footer>
+</body>
+  </html>
