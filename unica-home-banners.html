@@ -313,7 +313,115 @@
             .blog-grid { grid-template-columns:1fr; }
             .footer-grid { grid-template-columns:1fr; }
         }
-    </style>
+    
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Scroll reveal base */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.from-left { transform: translateX(-40px); }
+.reveal.from-right { transform: translateX(40px); }
+.reveal.from-scale { transform: scale(0.92); }
+.reveal.visible { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+
+/* Stagger children */
+.stagger-children .reveal:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children .reveal:nth-child(2) { transition-delay: 0.12s; }
+.stagger-children .reveal:nth-child(3) { transition-delay: 0.19s; }
+.stagger-children .reveal:nth-child(4) { transition-delay: 0.26s; }
+.stagger-children .reveal:nth-child(5) { transition-delay: 0.33s; }
+.stagger-children .reveal:nth-child(6) { transition-delay: 0.40s; }
+
+/* Stats counter glow */
+.stat-number { transition: color 0.3s; }
+.stat-item:hover .stat-number { color: var(--teal); transform: scale(1.08); transition: transform 0.3s, color 0.3s; }
+.stat-item { transition: transform 0.3s; cursor: default; }
+.stat-item:hover { transform: translateY(-4px); }
+
+/* Program cards enhanced */
+.program-card { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s; }
+.program-card.visible { opacity: 1; transform: translateY(0); }
+.program-card::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg); opacity: 0; transition: opacity 0.4s; background: linear-gradient(135deg, rgba(0,173,135,0.05) 0%, rgba(253,200,23,0.05) 100%); pointer-events: none; }
+.program-card:hover::after { opacity: 1; }
+
+/* Financing feature cards hover */
+.financing-feature-card { transition: transform 0.3s, box-shadow 0.3s; }
+.financing-feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,26,67,0.08); }
+
+/* Testimonial cards float */
+.testimonial-card { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s; }
+.testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0, 26, 67, 0.08); }
+
+/* Blog cards enhanced */
+.blog-card { position: relative; overflow: hidden; }
+.blog-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold), var(--primary)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; z-index: 2; }
+.blog-card:hover::before { transform: scaleX(1); }
+
+/* Gallery items */
+.gallery-item { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.gallery-item:hover { transform: scale(1.02); z-index: 2; }
+
+/* CTA buttons pulse on hover */
+.btn-primary:hover, .btn-secondary:hover, .nav-cta:hover { animation: pulse 0.6s ease-in-out; }
+
+/* Hero eyebrow shimmer */
+.hero-eyebrow { position: relative; overflow: hidden; }
+.hero-eyebrow::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); background-size: 200% 100%; animation: shimmer 3s infinite; pointer-events: none; border-radius: inherit; }
+
+/* Section headers underline animation */
+.headline-md { position: relative; display: inline-block; }
+
+/* Footer links hover */
+.footer-links a { transition: color 0.25s, padding-left 0.25s; }
+.footer-links a:hover { padding-left: 6px; color: var(--teal); }
+
+/* Smooth scroll indicator */
+.scroll-indicator { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 10; animation: float 2s ease-in-out infinite; }
+.scroll-indicator span { display: block; width: 24px; height: 24px; border-bottom: 2px solid rgba(255,255,255,0.5); border-right: 2px solid rgba(255,255,255,0.5); transform: rotate(45deg); }
+
+/* Nav animation on load */
+.nav-glass { animation: slideDown 0.6s ease-out; }
+
+/* Financing badge float */
+.financing-badge { animation: float 3s ease-in-out infinite; }
+
+</style>
 </head>
 <body>
 
@@ -674,6 +782,217 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
 })();
 /* Testimonial carousel dots */
 (function(){const track=document.getElementById('testimonialTrack'),dots=document.getElementById('carouselDots');if(!track||!dots)return;const slides=track.querySelectorAll('.testimonial-slide');slides.forEach((_,i)=>{const d=document.createElement('span');if(i===0)d.classList.add('active');d.addEventListener('click',()=>{slides[i].scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'})});dots.appendChild(d)});track.addEventListener('scroll',()=>{const sl=track.scrollLeft,sw=slides[0].offsetWidth+20;const idx=Math.round(sl/sw);dots.querySelectorAll('span').forEach((d,i)=>d.classList.toggle('active',i===idx))})})();
+</script>
+
+<script>
+/* ═══ ANIMATION ENGINE ═══ */
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── Counter Animation ── */
+    function animateCounter(el) {
+        const text = el.textContent.trim();
+        const match = text.match(/^([\d,.]+)\s*([KkMm%+]*.*)/);
+        if (!match) return;
+        let target = parseFloat(match[1].replace(/,/g, ''));
+        const suffix = match[2] || '';
+        const hasK = suffix.includes('K') || suffix.includes('k');
+        if (hasK) { target = target; }
+        const duration = 2000;
+        const startTime = performance.now();
+        const isDecimal = match[1].includes('.');
+        
+        function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+        
+        function update(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutExpo(progress);
+            let current = Math.round(eased * target);
+            if (isDecimal) current = (eased * target).toFixed(1);
+            
+            // Rebuild inner HTML preserving .accent spans
+            const accentSpan = el.querySelector('.accent');
+            if (accentSpan) {
+                const accentText = accentSpan.textContent;
+                el.innerHTML = current + '<span class="accent">' + accentText + '</span>';
+            } else {
+                el.textContent = current + suffix;
+            }
+            
+            if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+    }
+
+    /* ── Scroll Reveal (IntersectionObserver) ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    /* Tag elements for reveal */
+    const revealSelectors = [
+        '.stats-strip',
+        '.program-card',
+        '.gallery-item',
+        '.testimonial-card',
+        '.blog-card',
+        '.financing-section .financing-grid',
+        '.financing-feature-card',
+        '.contact-form-section .container > *',
+        '[class*="section-"] > .container > .headline-md',
+        '[class*="section-"] > .container > .body-lg',
+        '[class*="section-"] > .container > .label-md'
+    ];
+    
+    revealSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach((el, i) => {
+            if (!el.classList.contains('reveal')) {
+                el.classList.add('reveal');
+                el.style.transitionDelay = (i * 0.07) + 's';
+            }
+            revealObserver.observe(el);
+        });
+    });
+
+    /* ── Counter Observer ── */
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const nums = entry.target.querySelectorAll('.stat-number');
+                nums.forEach((num, i) => {
+                    setTimeout(() => animateCounter(num), i * 200);
+                });
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsStrip = document.querySelector('.stats-strip');
+    if (statsStrip) counterObserver.observe(statsStrip);
+
+    /* ── Parallax on Hero ── */
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const heroBg = hero.querySelector('.hero-bg, .hero-video');
+        if (heroBg) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                if (scrolled < window.innerHeight) {
+                    heroBg.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+                }
+            }, { passive: true });
+        }
+    }
+
+    /* ── Hero content staggered entrance ── */
+    const heroContent = document.querySelector('.hero-content, .hero-overlay + .hero-content');
+    if (heroContent) {
+        const children = heroContent.children;
+        Array.from(children).forEach((child, i) => {
+            child.style.opacity = '0';
+            child.style.transform = 'translateY(30px)';
+            child.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            child.style.transitionDelay = (0.3 + i * 0.2) + 's';
+            requestAnimationFrame(() => {
+                child.style.opacity = '1';
+                child.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
+    /* ── Tilt effect on cards ── */
+    document.querySelectorAll('.program-card, .testimonial-card, .hero-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = 'perspective(800px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateY(-8px)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s';
+        });
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'transform 0.1s ease, box-shadow 0.4s';
+        });
+    });
+
+    /* ── Typing effect on hero title (optional - only first time) ── */
+    const heroTitle = document.querySelector('.hero-title, .display-lg');
+    if (heroTitle && !heroTitle.dataset.typed) {
+        heroTitle.dataset.typed = 'true';
+    }
+
+    /* ── Smooth section transitions with color ── */
+    const sections = document.querySelectorAll('[class*="section-"], .financing-section');
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.05 });
+    
+    sections.forEach(s => {
+        s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        sectionObserver.observe(s);
+    });
+
+    /* ── Active nav link highlight on scroll ── */
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sectionEls = [];
+    navLinks.forEach(link => {
+        const id = link.getAttribute('href');
+        if (id && id !== '#') {
+            const sec = document.querySelector(id);
+            if (sec) sectionEls.push({ el: sec, link: link });
+        }
+    });
+
+    if (sectionEls.length) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset + 120;
+            sectionEls.forEach(({ el, link }) => {
+                if (el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+                    link.style.color = '#ffffff';
+                    link.style.borderBottom = '2px solid var(--gold)';
+                    link.style.paddingBottom = '2px';
+                } else {
+                    link.style.color = '';
+                    link.style.borderBottom = '';
+                    link.style.paddingBottom = '';
+                }
+            });
+        }, { passive: true });
+    }
+
+    /* ── Image lazy reveal ── */
+    const images = document.querySelectorAll('.program-card-img img, .gallery-item img, .blog-thumb img, .financing-img-wrapper img');
+    const imgObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'scale(1)';
+                imgObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    images.forEach(img => {
+        img.style.opacity = '0';
+        img.style.transform = 'scale(1.05)';
+        img.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        imgObserver.observe(img);
+    });
+
+});
+
 </script>
 </body>
 </html>
