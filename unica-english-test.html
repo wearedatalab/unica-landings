@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ÚNICA English Level Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--primary:#001943;--primary-light:#192f59;--teal:#00ad87;--teal-light:#e6f9f4;--teal-dark:#008a6c;
+--gold:#FFC919;--gold-light:#fff8e0;--surface:#faf9ff;--white:#ffffff;
+--red:#ef4444;--red-light:#fef2f2;--orange:#f59e0b;--orange-light:#fffbeb;
+--gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-300:#d1d5db;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--gray-700:#374151;--gray-800:#1f2937;
+--radius:16px;--radius-sm:10px;--radius-xl:24px;--shadow:0 4px 24px rgba(0,25,67,0.08);--shadow-lg:0 12px 40px rgba(0,25,67,0.12);
+}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:var(--gray-800);min-height:100dvh;overflow-x:hidden}
+
+/* ═══ APP SHELL ═══ */
+.app{max-width:480px;margin:0 auto;min-height:100dvh;background:var(--white);position:relative;overflow:hidden}
+
+/* ═══ SCREENS ═══ */
+.screen{display:none;flex-direction:column;min-height:100dvh;animation:fadeIn .4s ease}
+.screen.active{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:scale(0.8);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-200px) rotate(720deg);opacity:0}}
+@keyframes progressPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,173,135,0.3)}50%{box-shadow:0 0 0 8px rgba(0,173,135,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes barGrow{from{width:0}to{width:var(--bar-w)}}
+
+/* ═══ WELCOME SCREEN ═══ */
+.welcome{background:linear-gradient(160deg,var(--primary) 0%,var(--primary-light) 50%,#1a3a6a 100%);color:white;padding:0;position:relative}
+.welcome-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.welcome-bg .circle{position:absolute;border-radius:50%;opacity:.06}
+.welcome-bg .c1{width:300px;height:300px;background:var(--teal);top:-80px;right:-60px}
+.welcome-bg .c2{width:200px;height:200px;background:var(--gold);bottom:-40px;left:-40px}
+.welcome-bg .c3{width:150px;height:150px;background:white;bottom:30%;right:-30px}
+.welcome-left{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;min-width:0}
+.welcome-content{flex:1;display:flex;flex-direction:column;padding:40px 28px 32px}
+.welcome-logo{height:40px;width:auto;max-width:220px;object-fit:contain;margin-bottom:36px;animation:slideInUp .6s ease;filter:brightness(0) invert(1)}
+.welcome-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,173,135,0.15);color:var(--teal);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 14px;border-radius:100px;margin-bottom:20px;width:fit-content;animation:slideInUp .6s ease .1s both}
+.welcome h1{font-size:2rem;font-weight:800;line-height:1.12;margin-bottom:14px;animation:slideInUp .6s ease .2s both}
+.welcome h1 span{color:var(--gold)}
+.welcome p{font-size:.92rem;line-height:1.65;color:rgba(255,255,255,.7);margin-bottom:32px;animation:slideInUp .6s ease .3s both}
+.welcome-features{display:flex;flex-direction:column;gap:12px;margin-bottom:auto;animation:slideInUp .6s ease .4s both}
+.feature-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,.06);border-radius:var(--radius-sm);backdrop-filter:blur(4px)}
+.feature-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.feature-icon.listen{background:rgba(0,173,135,0.2)}
+.feature-icon.read{background:rgba(255,201,25,0.2)}
+.feature-icon.write{background:rgba(255,255,255,0.12)}
+.feature-text{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.85)}
+.welcome-cta{padding:24px 28px 40px;position:relative;z-index:1}
+.btn-start{width:100%;padding:18px;border:none;border-radius:var(--radius);font-family:inherit;font-size:1rem;font-weight:700;background:var(--gold);color:var(--primary);cursor:pointer;transition:all .3s;letter-spacing:.01em}
+.btn-start:active{transform:scale(.97)}
+.time-note{text-align:center;margin-top:10px;font-size:.75rem;color:rgba(255,255,255,.45)}
+.welcome-side{display:none}
+
+/* ═══ LEAD FORM ═══ */
+.lead-form{padding:32px 28px;flex:1;display:flex;flex-direction:column}
+.lead-header{text-align:center;margin-bottom:32px}
+.lead-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--teal-light),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px;animation:pop .5s ease}
+.lead-header h2{font-size:1.35rem;font-weight:800;color:var(--primary);margin-bottom:6px}
+.lead-header p{font-size:.85rem;color:var(--gray-500)}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:14px 16px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-family:inherit;font-size:.9rem;color:var(--gray-800);background:var(--white);transition:border-color .25s;outline:none;-webkit-appearance:none}
+.form-group input:focus,.form-group select:focus{border-color:var(--teal)}
+.form-group input::placeholder{color:var(--gray-400)}
+.btn-continue{width:100%;padding:16px;border:none;border-radius:var(--radius);font-family:inherit;font-size:.92rem;font-weight:700;background:var(--primary);color:white;cursor:pointer;margin-top:auto;transition:all .3s}
+.btn-continue:disabled{background:var(--gray-300);cursor:not-allowed}
+.btn-continue:not(:disabled):active{transform:scale(.97)}
+
+/* ═══ QUESTION SCREEN ═══ */
+.question-screen{padding:0;background:var(--white)}
+.q-header{padding:16px 20px 12px;background:var(--white);border-bottom:1px solid var(--gray-100)}
+.q-top-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.q-close{width:32px;height:32px;border:none;background:none;font-size:1.2rem;color:var(--gray-400);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.q-progress-bar{flex:1;height:10px;background:var(--gray-100);border-radius:10px;overflow:hidden;position:relative}
+.q-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-dark));border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1);position:relative}
+.q-progress-fill.animate{animation:progressPulse 1s ease}
+.q-progress-fill::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid white;box-shadow:0 2px 8px rgba(0,173,135,.3)}
+.q-lives{display:flex;align-items:center;gap:3px;font-size:.85rem}
+.q-section-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:5px 12px;border-radius:100px;width:fit-content}
+.q-section-badge.listening{background:rgba(0,173,135,0.1);color:var(--teal)}
+.q-section-badge.reading{background:rgba(255,201,25,0.15);color:#b8860b}
+.q-section-badge.writing{background:rgba(25,47,89,0.08);color:var(--primary)}
+
+.q-body{flex:1;padding:24px 20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.q-number{font-size:.75rem;font-weight:600;color:var(--gray-400);margin-bottom:6px}
+.q-prompt{font-size:1.1rem;font-weight:700;color:var(--primary);line-height:1.4;margin-bottom:20px}
+
+/* Audio player simulation */
+.audio-player{background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:var(--radius);padding:20px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.audio-play-btn{width:48px;height:48px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:transform .2s}
+.audio-play-btn:active{transform:scale(.9)}
+.audio-play-btn.playing{animation:pulse 1s infinite}
+.audio-wave{flex:1;display:flex;align-items:center;gap:2px;height:32px}
+.audio-wave span{width:3px;border-radius:3px;background:rgba(255,255,255,.3);transition:height .15s}
+.audio-wave.playing span{background:var(--gold);animation:float .6s ease infinite}
+.audio-wave span:nth-child(odd){animation-delay:.1s}
+.audio-wave span:nth-child(3n){animation-delay:.2s}
+.audio-time{font-size:.75rem;color:rgba(255,255,255,.6);font-weight:600}
+
+/* Answer options */
+.options{display:flex;flex-direction:column;gap:10px}
+.option{padding:16px 18px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;color:var(--gray-700);cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:12px;background:var(--white);position:relative;overflow:hidden}
+.option:active{transform:scale(.98)}
+.option-letter{width:30px;height:30px;border-radius:8px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--gray-500);flex-shrink:0;transition:all .25s}
+.option.selected{border-color:var(--teal);background:var(--teal-light)}
+.option.selected .option-letter{background:var(--teal);color:white}
+.option.correct{border-color:var(--teal);background:var(--teal-light);animation:pop .4s ease}
+.option.correct .option-letter{background:var(--teal);color:white}
+.option.wrong{border-color:var(--red);background:var(--red-light);animation:shake .4s ease}
+.option.wrong .option-letter{background:var(--red);color:white}
+
+/* Writing textarea */
+.writing-area{width:100%;min-height:120px;padding:16px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-family:inherit;font-size:.9rem;color:var(--gray-800);resize:none;outline:none;transition:border-color .25s;line-height:1.6}
+.writing-area:focus{border-color:var(--teal)}
+.writing-hint{font-size:.75rem;color:var(--gray-400);margin-top:8px;display:flex;align-items:center;gap:4px}
+.word-count{margin-left:auto;font-weight:600;color:var(--teal)}
+
+/* Sentence ordering */
+.drag-words{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;min-height:52px;padding:12px;border:2px dashed var(--gray-200);border-radius:var(--radius-sm);background:var(--gray-100);align-content:flex-start}
+.drag-words.target{background:var(--teal-light);border-color:var(--teal);min-height:56px}
+.word-chip{padding:8px 14px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:8px;font-size:.85rem;font-weight:600;color:var(--gray-700);cursor:pointer;user-select:none;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.word-chip:active{transform:scale(.94)}
+.word-chip.placed{background:var(--teal);color:white;border-color:var(--teal)}
+
+.q-footer{padding:16px 20px 32px;background:var(--white)}
+.btn-check{width:100%;padding:16px;border:none;border-radius:var(--radius);font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer;transition:all .3s}
+.btn-check.check{background:var(--gray-200);color:var(--gray-500)}
+.btn-check.enabled{background:var(--teal);color:white}
+.btn-check.enabled:active{transform:scale(.97)}
+.btn-check.next{background:var(--primary);color:white}
+
+/* Feedback toast */
+.feedback{padding:14px 18px;border-radius:var(--radius-sm);margin-bottom:14px;display:none;align-items:center;gap:10px;animation:slideInUp .3s ease}
+.feedback.show{display:flex}
+.feedback.correct{background:var(--teal-light);color:var(--teal-dark)}
+.feedback.wrong{background:var(--red-light);color:var(--red)}
+.feedback-icon{font-size:1.3rem}
+.feedback-text{font-size:.85rem;font-weight:600}
+
+/* ═══ RESULTS SCREEN ═══ */
+.results{padding:0;background:var(--white)}
+.results-hero{background:linear-gradient(160deg,var(--primary),var(--primary-light));padding:40px 28px 48px;text-align:center;position:relative;overflow:hidden}
+.results-hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(0,173,135,.08);top:-40px;right:-40px}
+.results-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;animation:confetti 2s ease forwards}
+.results-score-ring{width:140px;height:140px;margin:0 auto 20px;position:relative;animation:pop .6s ease .3s both}
+.score-svg{width:100%;height:100%;transform:rotate(-90deg)}
+.score-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:8}
+.score-fill{fill:none;stroke:var(--gold);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)}
+.score-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:2.5rem;font-weight:800;color:white;line-height:1}
+.score-label{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.results-level{font-size:1.1rem;font-weight:800;color:var(--gold);margin-bottom:4px;animation:slideInUp .5s ease .5s both}
+.results-sublevel{font-size:.85rem;color:rgba(255,255,255,.6);animation:slideInUp .5s ease .6s both}
+
+.results-body{padding:24px 20px 40px;margin-top:-20px;border-radius:var(--radius-xl) var(--radius-xl) 0 0;background:var(--white);position:relative}
+
+/* Radar / Quadrant */
+.quadrant-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 20px;margin-bottom:20px}
+.radar-card{background:var(--primary);border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,25,67,0.25)}
+.radar-card .quadrant-title{color:rgba(255,255,255,.9)}
+.quadrant-title{font-size:.92rem;font-weight:700;color:var(--primary);margin-bottom:16px;text-align:center}
+.radar-container{width:100%;max-width:280px;margin:0 auto;aspect-ratio:300/280}
+#radar-chart{width:100%;height:auto}
+.radar-legend{display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap}
+.radar-legend-item{display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.7)}
+.radar-legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+@keyframes radarGrow{from{opacity:0;transform:scale(0.3)}to{opacity:1;transform:scale(1)}}
+.radar-polygon{animation:radarGrow .8s cubic-bezier(.4,0,.2,1) .3s both;transform-origin:150px 140px}
+
+/* Recommendations */
+.reco-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px}
+.reco-card h3{font-size:.85rem;font-weight:700;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.reco-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100)}
+.reco-item:last-child{border:none}
+.reco-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.reco-dot.strength{background:var(--teal)}
+.reco-dot.weakness{background:var(--red)}
+.reco-dot.tip{background:var(--gold)}
+.reco-text{font-size:.82rem;color:var(--gray-600);line-height:1.5}
+.reco-text strong{color:var(--gray-800)}
+
+.btn-cta-result{width:100%;padding:18px;border:none;border-radius:var(--radius);font-family:inherit;font-size:1rem;font-weight:700;background:var(--gold);color:var(--primary);cursor:pointer;margin-top:8px;margin-bottom:12px;transition:all .3s}
+.btn-cta-result:active{transform:scale(.97)}
+.btn-retry{width:100%;padding:14px;border:2px solid var(--gray-200);border-radius:var(--radius);font-family:inherit;font-size:.88rem;font-weight:600;background:transparent;color:var(--gray-500);cursor:pointer}
+
+/* ═══ XP / STREAK BAR ═══ */
+.xp-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:8px 0}
+.xp-item{display:flex;align-items:center;gap:4px;font-size:.75rem;font-weight:700}
+.xp-item.xp{color:var(--gold)}
+.xp-item.streak{color:var(--red)}
+.xp-item.combo{color:var(--teal)}
+.xp-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;font-weight:800;color:var(--gold);pointer-events:none;z-index:100;animation:pop .5s ease forwards,fadeOut .5s ease 1s forwards;text-shadow:0 2px 12px rgba(255,201,25,.4)}
+@keyframes fadeOut{to{opacity:0;transform:translate(-50%,-60%)}}
+
+/* ═══ DESKTOP RESPONSIVE ═══ */
+@media(min-width:600px){
+    body{background:linear-gradient(135deg,#f0f2ff 0%,#e8eaff 50%,#f5f0e8 100%);display:flex;align-items:center;justify-content:center;padding:24px}
+    body::before{content:'';position:fixed;top:-20%;right:-10%;width:500px;height:500px;border-radius:50%;background:rgba(0,173,135,0.04);pointer-events:none}
+    body::after{content:'';position:fixed;bottom:-15%;left:-10%;width:400px;height:400px;border-radius:50%;background:rgba(255,201,25,0.05);pointer-events:none}
+    .app{max-width:480px;border-radius:var(--radius-xl);box-shadow:0 24px 80px rgba(0,25,67,0.12),0 0 0 1px rgba(0,25,67,0.04);min-height:min(100dvh - 48px, 860px);max-height:92dvh;overflow-y:auto;overflow-x:hidden}
+    .screen{min-height:min(100dvh - 48px, 860px)}
+    .btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,201,25,0.35)}
+    .btn-continue:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,25,67,0.15)}
+    .btn-check.enabled:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,173,135,0.25)}
+    .btn-check.next:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,25,67,0.2)}
+    .btn-cta-result:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,201,25,0.35)}
+    .option:hover{border-color:var(--teal);background:var(--teal-light);transform:translateX(4px)}
+    .word-chip:hover{border-color:var(--teal);background:var(--teal-light)}
+    .feature-item:hover{background:rgba(255,255,255,.1);transform:translateX(4px);transition:all .25s}
+    .form-group input:hover,.form-group select:hover{border-color:var(--gray-300)}
+    .q-body{scrollbar-width:thin;scrollbar-color:var(--gray-200) transparent}
+    .q-body::-webkit-scrollbar{width:4px}
+    .q-body::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:4px}
+}
+
+/* Large desktop: show side panel with branding */
+@media(min-width:960px){
+    body{padding:0}
+    .app{max-width:100%;border-radius:0;box-shadow:none;min-height:100dvh;max-height:100dvh;overflow-y:auto}
+    .screen{min-height:100dvh}
+
+    /* Welcome: side-by-side */
+    .welcome{flex-direction:row;min-height:100dvh}
+    .welcome-left{flex:1;max-width:540px;display:flex;flex-direction:column;justify-content:space-between}
+    .welcome-content{flex:1;padding:60px 48px 24px;justify-content:center}
+    .welcome-logo{height:48px;max-width:260px}
+    .welcome h1{font-size:2.4rem}
+    .welcome p{font-size:1rem}
+    .welcome-cta{padding:20px 48px 48px;flex-shrink:0}
+    .welcome-side{display:flex !important;flex:1;align-items:center;justify-content:center;background:rgba(0,0,0,0.08);position:relative;overflow:hidden}
+    .welcome-side-inner{text-align:center;padding:48px;animation:slideInRight .8s ease .5s both}
+    .welcome-side-inner h2{font-size:1.8rem;font-weight:800;color:white;margin-bottom:12px}
+    .welcome-side-inner p{font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.6}
+    .welcome-side .deco{position:absolute;border-radius:50%;opacity:.06}
+    .welcome-side .d1{width:280px;height:280px;background:var(--gold);top:10%;left:-60px}
+    .welcome-side .d2{width:180px;height:180px;background:var(--teal);bottom:15%;right:-30px}
+
+    /* Lead: centered card */
+    .screen:not(.welcome):not(.results){justify-content:center;align-items:center;background:linear-gradient(135deg,#f0f2ff,#e8eaff)}
+    .lead-form{max-width:440px;background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:40px 36px}
+
+    /* Questions: centered panel */
+    .question-screen{flex-direction:column;align-items:center;background:linear-gradient(135deg,#f0f2ff,#e8eaff)}
+    .question-screen .q-header{max-width:560px;width:100%;margin:0 auto;border-radius:var(--radius-xl) var(--radius-xl) 0 0;background:var(--white);box-shadow:0 -4px 24px rgba(0,25,67,0.03);padding:20px 28px 14px}
+    .question-screen .q-body{max-width:560px;width:100%;margin:0 auto;background:var(--white);padding:28px 32px}
+    .question-screen .q-footer{max-width:560px;width:100%;margin:0 auto;background:var(--white);border-radius:0 0 var(--radius-xl) var(--radius-xl);box-shadow:0 4px 24px rgba(0,25,67,0.03);padding:20px 28px 28px}
+    .q-prompt{font-size:1.2rem}
+    .option{padding:18px 22px;font-size:.95rem}
+
+    /* Results: two-column */
+    .results{flex-direction:column;align-items:center;background:var(--white);overflow-y:auto}
+    .results-hero{width:100%;padding:48px 28px 56px}
+    .results-body{max-width:640px;width:100%;padding:32px 28px 48px}
+    .results-score-ring{width:160px;height:160px}
+    .score-num{font-size:3rem}
+    .reco-card{padding:24px}
+}
+
+/* Extra wide: results grid */
+@media(min-width:1200px){
+    .results-body{max-width:800px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .quadrant-card{grid-column:span 2}
+    .btn-cta-result,.btn-retry{grid-column:span 2}
+}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+<!-- ═══ SCREEN 1: WELCOME ═══ -->
+<div class="screen welcome active" id="screen-welcome">
+    <div class="welcome-bg">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+    </div>
+    <div class="welcome-left">
+        <div class="welcome-content">
+            <img src="https://unica.edu.co/wp-content/uploads/2020/03/Recurso-1.png" alt="ÚNICA" class="welcome-logo">
+            <div class="welcome-badge">🎯 Test gratuito</div>
+            <h1>Descubre tu nivel de <span>inglés</span> en 5 minutos</h1>
+            <p>Evalúa tus habilidades de escucha, comprensión lectora y redacción con nuestro simulador interactivo.</p>
+            <div class="welcome-features">
+                <div class="feature-item">
+                    <div class="feature-icon listen">🎧</div>
+                    <div class="feature-text">Listening — Comprende lo que escuchas</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon read">📖</div>
+                    <div class="feature-text">Reading — Comprensión de textos</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon write">✍️</div>
+                    <div class="feature-text">Writing — Redacción y gramática</div>
+                </div>
+            </div>
+        </div>
+        <div class="welcome-cta">
+            <button class="btn-start" onclick="showScreen('screen-lead')">Comenzar test gratuito →</button>
+            <div class="time-note">⏱ Toma aproximadamente 5 minutos</div>
+        </div>
+    </div>
+    <!-- Desktop side panel -->
+    <div class="welcome-side">
+        <div class="deco d1"></div>
+        <div class="deco d2"></div>
+        <div class="welcome-side-inner">
+            <div style="font-size:4rem;margin-bottom:16px;animation:float 3s ease-in-out infinite">🎓</div>
+            <h2>+60 años formando<br>profesionales bilingües</h2>
+            <p>La Institución Universitaria Colombo Americana te ayuda a alcanzar la fluidez que necesitas para tu carrera profesional.</p>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:28px">
+                <div style="background:rgba(255,255,255,.08);padding:14px 18px;border-radius:12px;text-align:center">
+                    <div style="font-size:1.4rem;font-weight:800;color:var(--gold)">95%</div>
+                    <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px">Empleabilidad</div>
+                </div>
+                <div style="background:rgba(255,255,255,.08);padding:14px 18px;border-radius:12px;text-align:center">
+                    <div style="font-size:1.4rem;font-weight:800;color:var(--teal)">5K+</div>
+                    <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px">Egresados</div>
+                </div>
+                <div style="background:rgba(255,255,255,.08);padding:14px 18px;border-radius:12px;text-align:center">
+                    <div style="font-size:1.4rem;font-weight:800;color:white">12</div>
+                    <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px">Convenios</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ SCREEN 2: LEAD CAPTURE ═══ -->
+<div class="screen" id="screen-lead">
+    <div class="lead-form">
+        <div class="lead-header">
+            <div class="lead-avatar">👋</div>
+            <h2>¡Antes de comenzar!</h2>
+            <p>Cuéntanos un poco sobre ti para personalizar tus resultados</p>
+        </div>
+        <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" id="lead-name" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" id="lead-email" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+            <label>Celular</label>
+            <input type="tel" id="lead-phone" placeholder="+57 300 000 0000">
+        </div>
+        <div class="form-group">
+            <label>¿Cómo calificas tu inglés actual?</label>
+            <select id="lead-level">
+                <option value="">Selecciona...</option>
+                <option value="beginner">Principiante — Sé muy poco</option>
+                <option value="basic">Básico — Entiendo frases simples</option>
+                <option value="intermediate">Intermedio — Mantengo conversaciones</option>
+                <option value="advanced">Avanzado — Me comunico con fluidez</option>
+            </select>
+        </div>
+        <button class="btn-continue" id="btn-lead" disabled onclick="startTest()">Iniciar evaluación 🚀</button>
+    </div>
+</div>
+
+<!-- ═══ SCREEN 3: QUESTIONS ═══ -->
+<div class="screen question-screen" id="screen-question">
+    <div class="q-header">
+        <div class="q-top-row">
+            <button class="q-close" onclick="confirmExit()">✕</button>
+            <div class="q-progress-bar"><div class="q-progress-fill" id="progress-fill" style="width:0%"></div></div>
+            <div class="q-qcount" id="q-counter" style="font-size:.75rem;font-weight:700;color:var(--gray-400);white-space:nowrap">1/12</div>
+        </div>
+        <div class="xp-bar">
+            <div class="xp-item xp">⚡ <span id="xp-count">0</span> XP</div>
+            <div class="xp-item streak">🔥 <span id="streak-count">0</span></div>
+            <div class="xp-item combo" id="combo-display" style="display:none">✨ x<span id="combo-count">2</span></div>
+        </div>
+        <div id="section-badge" class="q-section-badge listening">🎧 Listening</div>
+    </div>
+
+    <div class="q-body" id="q-body">
+        <!-- Dynamic content -->
+    </div>
+
+    <div class="q-footer">
+        <div class="feedback" id="feedback">
+            <div class="feedback-icon" id="feedback-icon"></div>
+            <div class="feedback-text" id="feedback-text"></div>
+        </div>
+        <button class="btn-check check" id="btn-action" onclick="handleAction()" disabled>Comprobar</button>
+    </div>
+</div>
+
+<!-- ═══ SCREEN 4: RESULTS ═══ -->
+<div class="screen results" id="screen-results">
+    <div class="results-hero">
+        <div class="results-confetti" id="confetti-container"></div>
+        <div class="results-score-ring">
+            <svg class="score-svg" viewBox="0 0 160 160">
+                <circle class="score-bg" cx="80" cy="80" r="68"/>
+                <circle class="score-fill" id="score-circle" cx="80" cy="80" r="68" stroke-dasharray="427" stroke-dashoffset="427"/>
+            </svg>
+            <div class="score-text">
+                <div class="score-num" id="score-num">0</div>
+                <div class="score-label">puntos</div>
+            </div>
+        </div>
+        <div class="results-level" id="results-level">--</div>
+        <div class="results-sublevel" id="results-sublevel">--</div>
+    </div>
+
+    <div class="results-body">
+        <div class="quadrant-card radar-card">
+            <div class="quadrant-title">📊 Tu perfil de habilidades</div>
+            <div class="radar-container">
+                <svg id="radar-chart" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+            <div class="radar-legend" id="radar-legend"></div>
+        </div>
+
+        <div class="reco-card" id="strengths-card">
+            <h3>💪 Fortalezas</h3>
+            <div id="strengths-list"></div>
+        </div>
+
+        <div class="reco-card" id="weaknesses-card">
+            <h3>🎯 Áreas de mejora</h3>
+            <div id="weaknesses-list"></div>
+        </div>
+
+        <div class="reco-card">
+            <h3>📚 Recomendaciones ÚNICA</h3>
+            <div id="tips-list"></div>
+        </div>
+
+        <button class="btn-cta-result" onclick="window.open('https://unica.edu.co','_blank')">Inscríbete en ÚNICA →</button>
+        <button class="btn-retry" onclick="location.reload()">🔄 Repetir evaluación</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   ÚNICA ENGLISH TEST — GAME ENGINE
+   ═══════════════════════════════════════════ */
+
+// ── State ──
+let state = {
+    currentQ: 0,
+    lives: 3,
+    xp: 0,
+    streak: 0,
+    combo: 1,
+    scores: { listening: 0, reading: 0, writing: 0 },
+    maxScores: { listening: 0, reading: 0, writing: 0 },
+    answered: false,
+    selectedOption: null,
+    lead: {},
+    writingText: '',
+    orderedWords: []
+};
+
+// ── Questions Database ──
+const questions = [
+    // === LISTENING (4 questions) ===
+    {
+        section: 'listening',
+        type: 'audio-choice',
+        audio: 'greeting',
+        transcript: "Hello! My name is Sarah and I'm from New York. I work as a software engineer at a tech company. I've been living in Colombia for about two years now, and I absolutely love the culture here.",
+        prompt: 'Escucha el audio y responde: ¿De dónde es Sarah?',
+        options: ['Londres', 'Nueva York', 'Los Ángeles', 'Chicago'],
+        correct: 1,
+        points: 15
+    },
+    {
+        section: 'listening',
+        type: 'audio-choice',
+        audio: 'directions',
+        transcript: "Excuse me, could you tell me how to get to the nearest hospital? Sure! Go straight for two blocks, then turn right at the traffic light. The hospital will be on your left, next to the park.",
+        prompt: '¿Hacia dónde debe girar la persona para llegar al hospital?',
+        options: ['A la izquierda', 'A la derecha', 'Seguir derecho', 'Dar la vuelta'],
+        correct: 1,
+        points: 15
+    },
+    {
+        section: 'listening',
+        type: 'audio-choice',
+        audio: 'schedule',
+        transcript: "The meeting has been rescheduled from Thursday afternoon to Friday morning at 9 AM. Please make sure to bring your quarterly reports and the updated budget proposal.",
+        prompt: '¿Cuándo es la reunión reprogramada?',
+        options: ['Jueves en la tarde', 'Viernes a las 9 AM', 'Viernes en la tarde', 'Jueves a las 9 AM'],
+        correct: 1,
+        points: 15
+    },
+    {
+        section: 'listening',
+        type: 'audio-choice',
+        audio: 'weather',
+        transcript: "Today's forecast calls for partly cloudy skies with a high of 78 degrees. However, there's a 60 percent chance of thunderstorms this evening, so don't forget to bring an umbrella if you're going out tonight.",
+        prompt: '¿Qué deben llevar las personas si salen esta noche?',
+        options: ['Un abrigo', 'Protector solar', 'Un paraguas', 'Gafas de sol'],
+        correct: 2,
+        points: 20
+    },
+
+    // === READING (4 questions) ===
+    {
+        section: 'reading',
+        type: 'reading-choice',
+        passage: "The Colombian coffee industry has undergone a remarkable transformation in recent decades. While the country has long been known for producing some of the world's finest coffee beans, a new generation of farmers is now focusing on specialty coffee. These producers carefully control every aspect of the growing process, from selecting specific bean varieties to experimenting with different fermentation techniques. As a result, Colombian specialty coffee has gained international recognition and commands premium prices in global markets.",
+        prompt: '¿Cuál es la idea principal del texto?',
+        options: [
+            'Colombia produce el café más barato del mundo',
+            'Una nueva generación está transformando el café colombiano hacia la especialidad',
+            'Los agricultores colombianos no experimentan con el café',
+            'El café colombiano ha perdido reconocimiento internacional'
+        ],
+        correct: 1,
+        points: 15
+    },
+    {
+        section: 'reading',
+        type: 'reading-choice',
+        passage: "Remote work has become increasingly popular since 2020. Many companies have discovered that employees can be just as productive working from home as they are in the office. However, some studies suggest that remote workers may struggle with feelings of isolation and difficulty separating work from personal life. Companies are now exploring hybrid models that combine the flexibility of remote work with the social benefits of in-person collaboration.",
+        prompt: 'Según el texto, ¿qué problema pueden enfrentar los trabajadores remotos?',
+        options: [
+            'Mayor productividad',
+            'Mejores salarios',
+            'Aislamiento y dificultad para separar vida laboral y personal',
+            'Demasiada colaboración en persona'
+        ],
+        correct: 2,
+        points: 15
+    },
+    {
+        section: 'reading',
+        type: 'reading-choice',
+        passage: "Dear Mr. Johnson,\n\nI am writing to express my interest in the Marketing Manager position advertised on your company's website. With over five years of experience in digital marketing and a proven track record of increasing brand awareness by 40%, I believe I would be a valuable addition to your team.\n\nI am particularly drawn to your company's commitment to sustainable business practices.",
+        prompt: '¿Qué tipo de documento es este texto?',
+        options: [
+            'Un artículo de periódico',
+            'Una carta de aplicación laboral',
+            'Un reporte financiero',
+            'Una invitación a un evento'
+        ],
+        correct: 1,
+        points: 15
+    },
+    {
+        section: 'reading',
+        type: 'reading-choice',
+        passage: "Although artificial intelligence has made significant advances in natural language processing, machines still cannot fully understand the nuances of human communication. Sarcasm, cultural references, and emotional undertones remain challenging for AI systems to interpret accurately. Nevertheless, researchers are making progress in teaching machines to recognize context and sentiment, which could eventually bridge this gap.",
+        prompt: '¿Qué palabra describe mejor la actitud del autor hacia la IA?',
+        options: [
+            'Completamente pesimista',
+            'Cautelosamente optimista',
+            'Totalmente indiferente',
+            'Extremadamente entusiasta'
+        ],
+        correct: 1,
+        points: 20
+    },
+
+    // === WRITING (4 questions) ===
+    {
+        section: 'writing',
+        type: 'order-words',
+        prompt: 'Ordena las palabras para formar una oración correcta:',
+        words: ['been', 'I', 'English', 'have', 'studying', 'for', 'years', 'three'],
+        correct: 'I have been studying English for three years',
+        points: 15
+    },
+    {
+        section: 'writing',
+        type: 'fill-blank',
+        prompt: 'Completa la oración con la opción correcta:',
+        sentence: 'If I ___ more time, I would travel around the world.',
+        options: ['have', 'had', 'will have', 'having'],
+        correct: 1,
+        points: 15
+    },
+    {
+        section: 'writing',
+        type: 'fill-blank',
+        prompt: 'Selecciona la forma correcta del verbo:',
+        sentence: 'By the time we arrived, the movie ___ already started.',
+        options: ['has', 'have', 'had', 'was'],
+        correct: 2,
+        points: 15
+    },
+    {
+        section: 'writing',
+        type: 'free-write',
+        prompt: 'Escribe 2-3 oraciones en inglés sobre este tema:',
+        topic: '"What do you enjoy doing on weekends?"',
+        hint: 'Usa al menos 20 palabras. Se evaluará gramática, vocabulario y coherencia.',
+        minWords: 15,
+        points: 25
+    }
+];
+
+// Count max scores per section
+questions.forEach(q => { state.maxScores[q.section] += q.points; });
+
+// ── Screen Management ──
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// ── Lead Form Validation ──
+['lead-name','lead-email','lead-phone','lead-level'].forEach(id => {
+    document.getElementById(id).addEventListener('input', validateLead);
+});
+
+function validateLead() {
+    const name = document.getElementById('lead-name').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const phone = document.getElementById('lead-phone').value.trim();
+    const level = document.getElementById('lead-level').value;
+    const valid = name.length > 1 && email.includes('@') && phone.length > 5 && level;
+    document.getElementById('btn-lead').disabled = !valid;
+}
+
+// ── Start Test ──
+function startTest() {
+    state.lead = {
+        name: document.getElementById('lead-name').value.trim(),
+        email: document.getElementById('lead-email').value.trim(),
+        phone: document.getElementById('lead-phone').value.trim(),
+        level: document.getElementById('lead-level').value
+    };
+    state.currentQ = 0;
+    renderQuestion();
+    showScreen('screen-question');
+}
+
+// ── Render Question ──
+function renderQuestion() {
+    const q = questions[state.currentQ];
+    const total = questions.length;
+    const pct = ((state.currentQ) / total) * 100;
+
+    // Update progress
+    const fill = document.getElementById('progress-fill');
+    fill.style.width = pct + '%';
+    fill.classList.remove('animate');
+    void fill.offsetWidth;
+    fill.classList.add('animate');
+
+    // Update section badge
+    const badge = document.getElementById('section-badge');
+    const sectionMap = {
+        listening: { icon: '🎧', label: 'Listening', cls: 'listening' },
+        reading: { icon: '📖', label: 'Reading', cls: 'reading' },
+        writing: { icon: '✍️', label: 'Writing', cls: 'writing' }
+    };
+    const sec = sectionMap[q.section];
+    badge.className = 'q-section-badge ' + sec.cls;
+    badge.innerHTML = sec.icon + ' ' + sec.label;
+
+    // Update question counter
+    document.getElementById('q-counter').textContent = (state.currentQ + 1) + '/' + total;
+    document.getElementById('xp-count').textContent = state.xp;
+    document.getElementById('streak-count').textContent = state.streak;
+    if (state.combo > 1) {
+        document.getElementById('combo-display').style.display = 'flex';
+        document.getElementById('combo-count').textContent = state.combo;
+    } else {
+        document.getElementById('combo-display').style.display = 'none';
+    }
+
+    // Reset state
+    state.answered = false;
+    state.selectedOption = null;
+    state.orderedWords = [];
+    state.writingText = '';
+
+    // Hide feedback
+    document.getElementById('feedback').classList.remove('show', 'correct', 'wrong');
+
+    // Render body
+    const body = document.getElementById('q-body');
+    let html = '<div class="q-number">Pregunta ' + (state.currentQ + 1) + ' de ' + total + '</div>';
+
+    if (q.type === 'audio-choice') {
+        html += '<div class="q-prompt">' + q.prompt + '</div>';
+        html += renderAudioPlayer(q);
+        html += renderOptions(q.options);
+    } else if (q.type === 'reading-choice') {
+        html += '<div class="q-prompt">' + q.prompt + '</div>';
+        html += '<div style="background:var(--gray-100);padding:16px;border-radius:var(--radius-sm);margin-bottom:20px;font-size:.85rem;line-height:1.7;color:var(--gray-700);white-space:pre-line">' + q.passage + '</div>';
+        html += renderOptions(q.options);
+    } else if (q.type === 'order-words') {
+        html += '<div class="q-prompt">' + q.prompt + '</div>';
+        html += renderOrderWords(q);
+    } else if (q.type === 'fill-blank') {
+        html += '<div class="q-prompt">' + q.prompt + '</div>';
+        html += '<div style="background:var(--gray-100);padding:16px;border-radius:var(--radius-sm);margin-bottom:20px;font-size:1rem;font-weight:600;color:var(--primary);line-height:1.6">' + q.sentence.replace('___', '<span style="border-bottom:3px solid var(--gold);padding:0 8px;color:var(--gold)">___</span>') + '</div>';
+        html += renderOptions(q.options);
+    } else if (q.type === 'free-write') {
+        html += '<div class="q-prompt">' + q.prompt + '</div>';
+        html += '<div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));padding:18px;border-radius:var(--radius-sm);margin-bottom:16px;color:var(--gold);font-size:1rem;font-weight:700;font-style:italic;text-align:center">' + q.topic + '</div>';
+        html += '<textarea class="writing-area" id="writing-input" placeholder="Write your answer in English..." oninput="onWritingInput()"></textarea>';
+        html += '<div class="writing-hint">' + q.hint + '<span class="word-count" id="word-count">0 palabras</span></div>';
+    }
+
+    body.innerHTML = html;
+    body.style.animation = 'none';
+    void body.offsetWidth;
+    body.style.animation = 'slideInRight .4s ease';
+
+    // Reset button
+    const btn = document.getElementById('btn-action');
+    btn.textContent = 'Comprobar';
+    btn.className = 'btn-check check';
+    btn.disabled = true;
+}
+
+function renderAudioPlayer(q) {
+    const waveBars = Array.from({length: 24}, () => {
+        const h = Math.floor(Math.random() * 24) + 8;
+        return '<span style="height:' + h + 'px"></span>';
+    }).join('');
+    return '<div class="audio-player"><button class="audio-play-btn" onclick="playAudio(this)" data-transcript=\'' + q.transcript.replace(/'/g, '&#39;') + '\'>▶</button><div class="audio-wave" id="audio-wave">' + waveBars + '</div><div class="audio-time" id="audio-time">0:00</div></div>';
+}
+
+function renderOptions(options) {
+    const letters = ['A', 'B', 'C', 'D'];
+    return '<div class="options">' + options.map((opt, i) =>
+        '<div class="option" onclick="selectOption(this,' + i + ')"><div class="option-letter">' + letters[i] + '</div><span>' + opt + '</span></div>'
+    ).join('') + '</div>';
+}
+
+function renderOrderWords(q) {
+    const shuffled = [...q.words].sort(() => Math.random() - 0.5);
+    return '<div class="q-prompt" style="font-size:.85rem;color:var(--gray-500);margin-bottom:8px">Tu respuesta:</div>' +
+        '<div class="drag-words target" id="answer-zone" onclick="removeLastWord()"></div>' +
+        '<div class="q-prompt" style="font-size:.85rem;color:var(--gray-500);margin-bottom:8px;margin-top:12px">Palabras disponibles:</div>' +
+        '<div class="drag-words" id="word-bank">' +
+        shuffled.map(w => '<div class="word-chip" onclick="placeWord(this,\'' + w + '\')">' + w + '</div>').join('') +
+        '</div>';
+}
+
+// ── Audio Simulation ──
+let audioInterval = null;
+function playAudio(btn) {
+    const transcript = btn.dataset.transcript;
+    const wave = document.getElementById('audio-wave');
+    const timeEl = document.getElementById('audio-time');
+
+    if (btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        wave.classList.remove('playing');
+        clearInterval(audioInterval);
+        btn.innerHTML = '▶';
+        return;
+    }
+
+    btn.classList.add('playing');
+    wave.classList.add('playing');
+    btn.innerHTML = '⏸';
+
+    // Simulate audio with speech synthesis
+    if ('speechSynthesis' in window) {
+        speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(transcript);
+        utter.lang = 'en-US';
+        utter.rate = 0.9;
+        const voices = speechSynthesis.getVoices();
+        const enVoice = voices.find(v => v.lang.startsWith('en'));
+        if (enVoice) utter.voice = enVoice;
+
+        utter.onend = () => {
+            btn.classList.remove('playing');
+            wave.classList.remove('playing');
+            clearInterval(audioInterval);
+            btn.innerHTML = '🔄';
+        };
+        speechSynthesis.speak(utter);
+    }
+
+    // Timer
+    let seconds = 0;
+    clearInterval(audioInterval);
+    audioInterval = setInterval(() => {
+        seconds++;
+        const m = Math.floor(seconds / 60);
+        const s = (seconds % 60).toString().padStart(2, '0');
+        timeEl.textContent = m + ':' + s;
+    }, 1000);
+}
+
+// ── Interactions ──
+function selectOption(el, idx) {
+    if (state.answered) return;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    state.selectedOption = idx;
+    const btn = document.getElementById('btn-action');
+    btn.disabled = false;
+    btn.className = 'btn-check enabled';
+}
+
+function placeWord(el, word) {
+    if (state.answered || el.classList.contains('placed')) return;
+    el.classList.add('placed');
+    state.orderedWords.push(word);
+    const zone = document.getElementById('answer-zone');
+    const chip = document.createElement('div');
+    chip.className = 'word-chip placed';
+    chip.textContent = word;
+    chip.onclick = function() { removeWord(this, word, el); };
+    zone.appendChild(chip);
+    checkOrderReady();
+}
+
+function removeWord(chipInZone, word, originalChip) {
+    if (state.answered) return;
+    chipInZone.remove();
+    originalChip.classList.remove('placed');
+    state.orderedWords = state.orderedWords.filter(w => w !== word);
+    checkOrderReady();
+}
+
+function removeLastWord() {
+    // no-op for zone click
+}
+
+function checkOrderReady() {
+    const q = questions[state.currentQ];
+    const btn = document.getElementById('btn-action');
+    if (state.orderedWords.length === q.words.length) {
+        btn.disabled = false;
+        btn.className = 'btn-check enabled';
+    } else {
+        btn.disabled = true;
+        btn.className = 'btn-check check';
+    }
+}
+
+function onWritingInput() {
+    const textarea = document.getElementById('writing-input');
+    state.writingText = textarea.value;
+    const words = textarea.value.trim().split(/\s+/).filter(w => w.length > 0);
+    document.getElementById('word-count').textContent = words.length + ' palabras';
+    const btn = document.getElementById('btn-action');
+    const q = questions[state.currentQ];
+    if (words.length >= (q.minWords || 10)) {
+        btn.disabled = false;
+        btn.className = 'btn-check enabled';
+    } else {
+        btn.disabled = true;
+        btn.className = 'btn-check check';
+    }
+}
+
+// ── Check / Next ──
+function handleAction() {
+    const btn = document.getElementById('btn-action');
+    if (state.answered) {
+        nextQuestion();
+        return;
+    }
+    checkAnswer();
+}
+
+function checkAnswer() {
+    const q = questions[state.currentQ];
+    state.answered = true;
+    let isCorrect = false;
+    let earnedPoints = 0;
+
+    if (q.type === 'audio-choice' || q.type === 'reading-choice' || q.type === 'fill-blank') {
+        isCorrect = state.selectedOption === q.correct;
+        if (isCorrect) {
+            document.querySelectorAll('.option')[q.correct].classList.add('correct');
+        } else {
+            document.querySelectorAll('.option')[state.selectedOption].classList.add('wrong');
+            setTimeout(() => {
+                document.querySelectorAll('.option')[q.correct].classList.add('correct');
+            }, 400);
+        }
+    } else if (q.type === 'order-words') {
+        const answer = state.orderedWords.join(' ');
+        isCorrect = answer.toLowerCase() === q.correct.toLowerCase();
+        if (!isCorrect) {
+            document.getElementById('answer-zone').style.borderColor = 'var(--red)';
+            document.getElementById('answer-zone').style.animation = 'shake .4s ease';
+        } else {
+            document.getElementById('answer-zone').style.borderColor = 'var(--teal)';
+            document.getElementById('answer-zone').style.background = 'var(--teal-light)';
+        }
+    } else if (q.type === 'free-write') {
+        // Evaluate writing quality
+        const text = state.writingText.trim();
+        const words = text.split(/\s+/).filter(w => w.length > 0);
+        const wordCount = words.length;
+        const hasPunctuation = /[.!?]/.test(text);
+        const hasCapital = /^[A-Z]/.test(text);
+        const hasConnectors = /\b(and|but|because|also|however|then|so|while|although)\b/i.test(text);
+        const hasVariety = new Set(words.map(w => w.toLowerCase())).size;
+        const uniqueRatio = hasVariety / wordCount;
+
+        let score = 0;
+        if (wordCount >= 20) score += 30; else if (wordCount >= 15) score += 20; else score += 10;
+        if (hasPunctuation) score += 15;
+        if (hasCapital) score += 10;
+        if (hasConnectors) score += 20;
+        if (uniqueRatio > 0.6) score += 15; else if (uniqueRatio > 0.4) score += 8;
+        if (wordCount >= 30) score += 10;
+
+        const pct = Math.min(score / 100, 1);
+        earnedPoints = Math.round(q.points * pct);
+        isCorrect = pct >= 0.5;
+        state.scores[q.section] += earnedPoints;
+
+        showFeedback(isCorrect, isCorrect ?
+            '¡Bien escrito! +' + earnedPoints + ' XP' :
+            'Intenta usar más vocabulario y conectores. +' + earnedPoints + ' XP');
+        updateXP(earnedPoints, isCorrect);
+
+        const btn = document.getElementById('btn-action');
+        btn.textContent = state.currentQ < questions.length - 1 ? 'Siguiente →' : 'Ver resultados 🎉';
+        btn.className = 'btn-check next';
+        btn.disabled = false;
+        return;
+    }
+
+    if (isCorrect) {
+        earnedPoints = q.points * state.combo;
+        state.scores[q.section] += q.points;
+        state.streak++;
+        if (state.streak > 0 && state.streak % 3 === 0) state.combo = Math.min(state.combo + 1, 3);
+        showFeedback(true, '¡Excelente! +' + earnedPoints + ' XP');
+        showXPPopup('+' + earnedPoints + ' XP');
+    } else {
+        state.streak = 0;
+        state.combo = 1;
+        showFeedback(false, 'Respuesta incorrecta. ¡Sigue intentando!');
+    }
+
+    updateXP(earnedPoints, isCorrect);
+
+    const btn = document.getElementById('btn-action');
+    btn.textContent = state.currentQ < questions.length - 1 ? 'Siguiente →' : 'Ver resultados 🎉';
+    btn.className = 'btn-check next';
+    btn.disabled = false;
+
+    // Stop audio if playing
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    clearInterval(audioInterval);
+}
+
+function updateXP(points, correct) {
+    state.xp += points;
+    document.getElementById('xp-count').textContent = state.xp;
+    document.getElementById('streak-count').textContent = state.streak;
+    if (state.combo > 1) {
+        document.getElementById('combo-display').style.display = 'flex';
+        document.getElementById('combo-count').textContent = state.combo;
+    }
+}
+
+function showFeedback(correct, text) {
+    const fb = document.getElementById('feedback');
+    fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+    document.getElementById('feedback-icon').textContent = correct ? '✅' : '❌';
+    document.getElementById('feedback-text').textContent = text;
+}
+
+function showXPPopup(text) {
+    const popup = document.createElement('div');
+    popup.className = 'xp-popup';
+    popup.textContent = text;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 1600);
+}
+
+function nextQuestion() {
+    state.currentQ++;
+    if (state.currentQ >= questions.length) {
+        showResults();
+    } else {
+        renderQuestion();
+    }
+}
+
+function confirmExit() {
+    if (confirm('¿Seguro que deseas salir? Perderás tu progreso.')) {
+        location.reload();
+    }
+}
+
+// ── Results ──
+function showResults() {
+    showScreen('screen-results');
+
+    // Calculate percentages
+    const listening = state.maxScores.listening > 0 ? Math.round((state.scores.listening / state.maxScores.listening) * 100) : 0;
+    const reading = state.maxScores.reading > 0 ? Math.round((state.scores.reading / state.maxScores.reading) * 100) : 0;
+    const writing = state.maxScores.writing > 0 ? Math.round((state.scores.writing / state.maxScores.writing) * 100) : 0;
+    const overall = Math.round((listening + reading + writing) / 3);
+
+    // Determine level
+    let level, sublevel;
+    if (overall >= 85) { level = 'B2 — Upper Intermediate'; sublevel = '¡Tu inglés es excelente! Estás listo para certificarte.'; }
+    else if (overall >= 70) { level = 'B1 — Intermediate'; sublevel = 'Buen nivel. Con práctica puedes alcanzar B2.'; }
+    else if (overall >= 50) { level = 'A2 — Pre-Intermediate'; sublevel = 'Tienes bases. Es momento de fortalecer tus habilidades.'; }
+    else if (overall >= 30) { level = 'A1 — Beginner'; sublevel = 'Estás comenzando. ¡ÚNICA te puede ayudar a avanzar!'; }
+    else { level = 'Pre-A1 — Starter'; sublevel = 'Empieza tu camino bilingüe con ÚNICA.'; }
+
+    // Animate score ring
+    const circle = document.getElementById('score-circle');
+    const circumference = 427;
+    const offset = circumference - (overall / 100) * circumference;
+    setTimeout(() => {
+        circle.style.strokeDashoffset = offset;
+    }, 500);
+
+    // Animate score number
+    animateNumber('score-num', overall, 1500);
+
+    document.getElementById('results-level').textContent = level;
+    document.getElementById('results-sublevel').textContent = sublevel;
+
+    // Radar chart
+    drawRadarChart(listening, reading, writing);
+
+    // Strengths
+    const strengths = [];
+    const weaknesses = [];
+    if (listening >= 60) strengths.push('<strong>Listening:</strong> Captaste bien la información de los audios. Tu comprensión auditiva es sólida.');
+    else weaknesses.push('<strong>Listening:</strong> Practica con podcasts, series en inglés y música. Enfócate en entender sin subtítulos.');
+    if (reading >= 60) strengths.push('<strong>Reading:</strong> Comprendes bien los textos. Identificas ideas principales y contexto.');
+    else weaknesses.push('<strong>Reading:</strong> Lee artículos cortos en inglés diariamente. Subraya palabras nuevas y busca su significado.');
+    if (writing >= 60) strengths.push('<strong>Writing:</strong> Tu redacción muestra buen manejo de estructuras y vocabulario.');
+    else weaknesses.push('<strong>Writing:</strong> Practica escribiendo diarios, correos o resúmenes. Usa conectores y varía tu vocabulario.');
+
+    document.getElementById('strengths-list').innerHTML = strengths.length ?
+        strengths.map(s => '<div class="reco-item"><div class="reco-dot strength"></div><div class="reco-text">' + s + '</div></div>').join('') :
+        '<div class="reco-item"><div class="reco-dot tip"></div><div class="reco-text">Aún tienes mucho potencial por desarrollar. ¡No te desanimes!</div></div>';
+
+    document.getElementById('weaknesses-list').innerHTML = weaknesses.length ?
+        weaknesses.map(w => '<div class="reco-item"><div class="reco-dot weakness"></div><div class="reco-text">' + w + '</div></div>').join('') :
+        '<div class="reco-item"><div class="reco-dot strength"></div><div class="reco-text">¡Felicitaciones! No se detectaron áreas débiles significativas.</div></div>';
+
+    // Tips
+    const tips = [
+        '<strong>Programa ÚNICA de Bilingüismo:</strong> Nuestro programa de Licenciatura en Bilingüismo te lleva desde cualquier nivel hasta la fluidez profesional.',
+        '<strong>Practica 15 min/día:</strong> La constancia supera a la intensidad. Usa apps, podcasts y lecturas cortas diariamente.',
+        '<strong>Inmersión:</strong> Cambia tu celular y redes sociales a inglés. Rodéate del idioma en tu día a día.'
+    ];
+    document.getElementById('tips-list').innerHTML = tips.map(t =>
+        '<div class="reco-item"><div class="reco-dot tip"></div><div class="reco-text">' + t + '</div></div>'
+    ).join('');
+
+    // Confetti
+    launchConfetti();
+
+    // Log lead (in real scenario, send to server)
+    console.log('LEAD CAPTURED:', { ...state.lead, scores: { listening, reading, writing, overall }, level });
+}
+
+function animateNumber(id, target, duration) {
+    const el = document.getElementById(id);
+    const start = performance.now();
+    function update(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+function launchConfetti() {
+    const container = document.getElementById('confetti-container');
+    const colors = ['#FFC919', '#00ad87', '#ef4444', '#3b82f6', '#a855f7', '#f59e0b'];
+    for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + '%';
+        piece.style.top = (60 + Math.random() * 40) + '%';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 1 + 's';
+        piece.style.animationDuration = (1.5 + Math.random() * 1) + 's';
+        container.appendChild(piece);
+    }
+}
+
+// ── Radar Chart ──
+function drawRadarChart(listening, reading, writing) {
+    const svg = document.getElementById('radar-chart');
+    const cx = 150, cy = 140, maxR = 100;
+    const axes = [
+        { label: 'Listening', pct: listening, angle: -90, icon: '🎧', color: '#00ad87' },
+        { label: 'Reading', pct: reading, angle: 30, icon: '📖', color: '#FFC919' },
+        { label: 'Writing', pct: writing, angle: 150, icon: '✍️', color: '#60a5fa' }
+    ];
+
+    function toXY(angleDeg, r) {
+        const rad = angleDeg * Math.PI / 180;
+        return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+    }
+
+    let svgContent = '';
+
+    // Grid rings (4 levels: 25%, 50%, 75%, 100%)
+    [0.25, 0.5, 0.75, 1].forEach(level => {
+        const pts = axes.map(a => toXY(a.angle, maxR * level));
+        const path = pts.map((p, i) => (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ') + 'Z';
+        svgContent += '<path d="' + path + '" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>';
+    });
+
+    // Axis lines
+    axes.forEach(a => {
+        const p = toXY(a.angle, maxR);
+        svgContent += '<line x1="' + cx + '" y1="' + cy + '" x2="' + p.x.toFixed(1) + '" y2="' + p.y.toFixed(1) + '" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>';
+    });
+
+    // Data polygon
+    const dataPts = axes.map(a => toXY(a.angle, maxR * (a.pct / 100)));
+    const dataPath = dataPts.map((p, i) => (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ') + 'Z';
+    svgContent += '<polygon class="radar-polygon" points="' + dataPts.map(p => p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ') + '" fill="rgba(0,173,135,0.25)" stroke="#00ad87" stroke-width="2.5"/>';
+
+    // Data points + labels
+    axes.forEach((a, i) => {
+        const dp = dataPts[i];
+        svgContent += '<circle cx="' + dp.x.toFixed(1) + '" cy="' + dp.y.toFixed(1) + '" r="5" fill="' + a.color + '" stroke="var(--primary)" stroke-width="2" class="radar-polygon"/>';
+
+        // Value label near the point
+        const valP = toXY(a.angle, maxR * (a.pct / 100) + 14);
+        svgContent += '<text x="' + valP.x.toFixed(1) + '" y="' + (valP.y + 1).toFixed(1) + '" text-anchor="middle" font-size="11" font-weight="800" fill="' + a.color + '">' + a.pct + '%</text>';
+
+        // Axis label
+        const labelP = toXY(a.angle, maxR + 28);
+        svgContent += '<text x="' + labelP.x.toFixed(1) + '" y="' + labelP.y.toFixed(1) + '" text-anchor="middle" font-size="12" font-weight="700" fill="rgba(255,255,255,0.85)">' + a.icon + ' ' + a.label + '</text>';
+    });
+
+    svg.innerHTML = svgContent;
+
+    // Legend
+    const legend = document.getElementById('radar-legend');
+    legend.innerHTML = axes.map(a =>
+        '<div class="radar-legend-item"><div class="radar-legend-dot" style="background:' + a.color + '"></div>' + a.label + ': ' + a.pct + '%</div>'
+    ).join('');
+}
+
+// ── Init voices for speech synthesis ──
+if ('speechSynthesis' in window) {
+    speechSynthesis.getVoices();
+    speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+</script>
+
+</body>
+</html>
